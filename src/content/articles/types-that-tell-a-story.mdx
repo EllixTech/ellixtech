@@ -1,0 +1,48 @@
+---
+title: "Types that tell a better story"
+description: "Move beyond annotations. Use TypeScript to make impossible states harder to represent."
+date: "2026-10-25"
+category: "TypeScript"
+tags: ["TypeScript","Architecture"]
+minutes: 6
+art: "types"
+---
+
+## Name the states
+
+A handful of optional properties can hide a surprising number of invalid combinations. A request cannot be both loading and complete, but a pair of booleans can say otherwise.
+
+Model the actual states of your interface instead.
+
+```ts
+type Result<T> =
+  | { state: 'loading' }
+  | { state: 'success'; data: T }
+  | { state: 'error'; message: string };
+
+function describe(result: Result<string[]>): string {
+  switch (result.state) {
+    case 'loading': return 'Loading articles…';
+    case 'success': return result.data.join(', ');
+    case 'error': return result.message;
+  }
+}
+```
+
+## Let narrowing do the work
+
+The discriminant, `state`, connects each branch to its available data. Inside the success branch, TypeScript knows that data exists. There is no need for a non-null assertion or an unrelated loading flag.
+
+This pattern is especially helpful for asynchronous work, checkout flows, and permissions.
+
+## Keep the boundary honest
+
+Types disappear at runtime. When data comes from a network, file, or user, validate it before treating it as trusted application data.
+
+Use a schema at the boundary and a small, explicit domain model inside it. The type system then helps carry the validated shape through the rest of the program.
+
+## Optimize for the next reader
+
+A type is part of your documentation. Prefer a name that explains the meaning of a value over one that only describes its storage.
+
+The best model is usually the smallest one that represents the real rules. Read more about [discriminated unions in the TypeScript handbook](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions).

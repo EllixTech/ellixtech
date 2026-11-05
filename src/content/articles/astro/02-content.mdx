@@ -1,0 +1,66 @@
+---
+title: "Give your content a structure"
+description: "Build a typed MDX content collection and turn your writing into static article pages."
+date: "2026-10-20"
+category: "Tutorials"
+tags: ["Astro","MDX"]
+minutes: 10
+art: "types"
+series: "Astro fundamentals"
+part: 2
+---
+
+import YouTube from '../../../components/YouTube.astro';
+
+## Add MDX support
+
+MDX combines Markdown writing with reusable components. Install Astro's official integration, then create a directory for your articles.
+
+```sh
+pnpm astro add mdx
+```
+
+## Define the collection
+
+Use a content loader and a schema to catch missing or malformed metadata at build time.
+
+```ts
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const articles = defineCollection({
+  loader: glob({
+    pattern: '**/*.mdx',
+    base: './src/content/articles'
+  }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date()
+  })
+});
+
+export const collections = { articles };
+```
+
+Save this in `src/content.config.ts`. Add a description and language field as your publication grows.
+
+## Render the article
+
+A dynamic route can use `getStaticPaths` to enumerate entries and `render` to turn an entry into its content component. The result remains a static page.
+
+Keep presentation in your layout and editorial content in MDX. This makes a design change independent of the writing.
+
+## Add a video deliberately
+
+A responsive embed can accompany an explanation without taking over the page. This overview introduces the framework used in the series.
+
+<YouTube id="dsTXcSeAZq8" title="Astro in 100 Seconds — framework overview" />
+
+Always provide an iframe title, preserve its aspect ratio, and defer loading content that is below the fold.
+
+## Verify your content
+
+Run a production build after adding an article. The schema should reject missing required fields, while the generated page should show its title, date, headings, and code blocks.
+
+The final chapter covers the deployment path.
+

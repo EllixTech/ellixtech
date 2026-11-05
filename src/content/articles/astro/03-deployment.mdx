@@ -1,0 +1,53 @@
+---
+title: "Ship it with confidence"
+description: "Check your production build and prepare a repeatable GitHub Pages deployment."
+date: "2026-10-19"
+category: "Tutorials"
+tags: ["Astro","Deployment"]
+minutes: 7
+art: "terminal"
+series: "Astro fundamentals"
+part: 3
+---
+
+## Build before you deploy
+
+A development server is forgiving. A production build is the artifact your readers will receive.
+
+```sh
+pnpm check
+pnpm build
+pnpm preview
+```
+
+Visit each important route in the preview, including a nested article URL. Confirm the CSS, fonts, and images load correctly.
+
+## Set the canonical origin
+
+Configure Astro's `site` value to match the public domain. This gives sitemap generation and absolute metadata a consistent origin.
+
+```js
+export default defineConfig({
+  site: 'https://ellixtech.com'
+});
+```
+
+When serving from a repository subpath instead of a custom domain, configure the base path too.
+
+## Automate the repeatable steps
+
+A GitHub Pages workflow should install the locked dependencies, run checks, build the static site, upload the output directory, and deploy that artifact.
+
+Give the deployment job only the permissions it needs. The site does not require a runtime server or a paid hosting plan.
+
+## Connect your domain
+
+After the code is approved and pushed, select GitHub Actions as the Pages source. Add the custom domain in Pages settings, verify domain ownership, and configure DNS according to GitHub's current documentation.
+
+Wait for DNS validation before enabling HTTPS. A CNAME file in your source expresses the intended domain, but does not change your DNS provider.
+
+## Keep a release checklist
+
+Review the homepage, a long article, search, a narrow viewport, and both color themes. Check feed URLs and social metadata. Then read the content one last time.
+
+A deployment is a repeatable engineering step. Publishing is also an editorial decision.

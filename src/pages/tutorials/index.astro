@@ -1,0 +1,4 @@
+---
+import Base from '../../layouts/Base.astro';import Card from '../../components/Card.astro';import {allArticles} from '../../lib/content';const articles=(await allArticles()).filter(a=>a.data.category==='Tutorials');
+---
+<Base title="Tutorials — EllixTech"><section class="wrap page-intro"><div class="eyebrow">LEARN BY BUILDING</div><h1>From theory<br/>to practice<span class="coral-period">.</span></h1><p>Focused walkthroughs, working code, and the reasoning behind every decision.</p></section><section class="wrap journal-list"><div class="article-grid">{articles.map(article=><Card article={article}/>)}</div></section></Base>

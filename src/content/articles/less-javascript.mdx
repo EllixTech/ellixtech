@@ -1,0 +1,52 @@
+---
+title: "The quiet power of shipping less JavaScript"
+description: "A faster web doesn't need a more complicated stack. Sometimes, the best engineering decision is knowing what to leave out."
+date: "2026-10-28"
+category: "Web engineering"
+tags: ["Astro","Performance"]
+minutes: 7
+art: "orbit"
+---
+
+## Start with the document
+
+A technical publication is mostly text, links, images, and code. Those are things a browser already understands. Before choosing a client framework, ask which parts of the experience actually need to respond to the reader.
+
+A search filter needs JavaScript. A paragraph does not. Keeping that distinction visible helps us make better decisions about what we send over the network.
+
+## Choose your interactive boundaries
+
+Astro renders components to HTML by default. Client-side behavior becomes an explicit choice rather than an assumption baked into every component.
+
+```astro
+---
+import Search from '../components/Search.tsx';
+---
+<main>
+  <h1>The journal</h1>
+  <Search client:visible />
+</main>
+```
+
+This example hydrates a framework component when it becomes visible. A small interaction can also use a regular script, with no client framework at all.
+
+> Start with HTML. Add behavior where it earns its place.
+
+## Measure the experience
+
+Bundle size is a useful signal, but it isn't the entire experience. Test a real navigation on a constrained connection, inspect layout shifts, and check whether the primary content appears before optional features.
+
+- Give images explicit dimensions to reserve their space.
+- Prefer local fonts with a sensible fallback.
+- Keep third-party scripts out of the critical path.
+- Test keyboard navigation alongside pointer interactions.
+
+The goal is a page that remains useful while everything else loads.
+
+## Make simplicity a constraint
+
+Every dependency brings a maintenance cost. Every interactive component introduces a new state to test. That doesn't make either a bad choice; it means they should solve a clear problem.
+
+For a journal, a static document and a few small enhancements can go a long way. The result is a site whose architecture matches its purpose: letting people read.
+
+Explore [Astro's islands architecture](https://docs.astro.build/en/concepts/islands/) for the underlying model.

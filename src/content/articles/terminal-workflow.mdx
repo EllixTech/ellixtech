@@ -1,0 +1,47 @@
+---
+title: "A calmer command line workflow"
+description: "Small habits that make your terminal a reliable workspace, rather than another source of friction."
+date: "2026-10-23"
+category: "Developer tools"
+tags: ["Workflow","Tools"]
+minutes: 5
+art: "terminal"
+---
+
+## Keep the feedback loop short
+
+A useful terminal workflow helps answer three questions quickly: where am I, what changed, and did it work?
+
+You do not need an elaborate configuration to answer them. Start with your shell's built-in history and a few reliable commands.
+
+```sh
+git status --short
+git diff --stat
+git diff
+```
+
+Read the actual diff before staging. A green build says the program compiles; it does not tell you whether an unrelated file slipped into the commit.
+
+## Give commands a home
+
+Put common checks in your package scripts so that local development and continuous integration share the same entry points.
+
+```json
+{
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro build"
+  }
+}
+```
+
+## Make failures visible
+
+Avoid command chains that conceal a failed step. Read exit codes, preserve logs when investigating a problem, and rerun the smallest command that reproduces it.
+
+When a command needs environment variables, document the variable names and provide an example file without secrets.
+
+## Leave a useful trail
+
+A short README that explains how to start, check, and build the project is often more valuable than a collection of personal aliases. Make the routine path easy for the next contributor—including your future self.

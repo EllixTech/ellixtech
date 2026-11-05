@@ -1,0 +1,4 @@
+---
+const {variant='orbit',large=false}=Astro.props;
+---
+<div class:list={['art',variant,{large}]} aria-hidden="true"><div class="art-grid"></div><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-ring r3"></div><div class="art-core">{variant==='types'?'{ }':variant==='terminal'?'>_':'✳'}</div><span class="art-coordinate">ELLIX / LAB — {variant==='types'?'002':variant==='terminal'?'003':'001'}</span><span class="art-dot"></span></div>

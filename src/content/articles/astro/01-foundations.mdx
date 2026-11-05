@@ -1,0 +1,58 @@
+---
+title: "Start with a solid foundation"
+description: "Create an Astro project, understand its structure, and build your first reusable layout."
+date: "2026-10-21"
+category: "Tutorials"
+tags: ["Astro","Fundamentals"]
+minutes: 8
+art: "orbit"
+series: "Astro fundamentals"
+part: 1
+---
+
+## Create your project
+
+This series builds a small, static publication with Astro. You will need a supported Node.js version and a package manager.
+
+```sh
+pnpm create astro@latest my-journal
+cd my-journal
+pnpm dev
+```
+
+Follow the setup prompts, then open the local URL printed by the development server.
+
+## Understand the structure
+
+Routes live in `src/pages`. Reusable UI belongs in `src/components`, and layouts wrap the content shared across routes.
+
+A layout can accept a title and render the page body through a slot.
+
+```astro
+---
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+  </head>
+  <body><main><slot /></main></body>
+</html>
+```
+
+Add a viewport meta tag and a shared stylesheet before using this as a production layout.
+
+## Build the first page
+
+Import the layout into `src/pages/index.astro`, pass a useful title, and write your introduction inside it. Start with semantic HTML before adding classes.
+
+Use a single main heading, meaningful link labels, and sections that remain understandable without their visual styling.
+
+## Check your foundation
+
+Open the page at a narrow width and navigate using only the keyboard. Make sure the browser title describes the page and the content remains readable when you zoom.
+
+In the next chapter, we will move article content into MDX and give it a validated schema.

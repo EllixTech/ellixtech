@@ -1,0 +1,4 @@
+---
+import Art from './Art.astro';import {articleUrl,dateLabel} from '../lib/content';const {article}=Astro.props;const d=article.data;
+---
+<article class="article-card" data-category={d.category} data-tags={d.tags.join('|').toLowerCase()} data-search={`${d.title} ${d.description} ${d.tags.join(' ')} ${d.category}`.toLowerCase()}><a class="card-art" href={articleUrl(article.id)} tabindex="-1" aria-hidden="true"><Art variant={d.art}/></a><div class="card-meta"><span>{d.category}</span><span>{d.minutes} min read</span></div><h3><a href={articleUrl(article.id)}>{d.title}<span class="arrow">↗</span></a></h3><p>{d.description}</p><div class="card-bottom"><time datetime={d.date.toISOString()}>{dateLabel(d.date,d.lang)}</time><span>{d.tags[0]}</span></div></article>

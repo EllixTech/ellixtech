@@ -1,0 +1,1 @@
+import {getCollection} from 'astro:content';export const allArticles=async()=>(await getCollection('articles')).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());export const articleUrl=(id:string)=>'/journal/'+id+'/';export const dateLabel=(date:Date,lang='en')=>new Intl.DateTimeFormat(lang,{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(date);
