@@ -15,7 +15,7 @@ Open http://127.0.0.1:4321. Use `npm run check` and `npm run build` to validate.
 
 ## Writing
 
-Add MDX files in `src/content/articles/`. Frontmatter requires title, description, date, category, tags, and minutes. Optional fields: lang (en/es), series, part, art (orbit/types/terminal). Dates are interpreted in UTC. Content is schema-validated during builds. Keep publication dates at or before release.
+Add Markdown or MDX files in `src/content/articles/`. Frontmatter requires title, description, date, category, tags, and minutes. Optional fields: lang (en/es), series, part, art (orbit/types/terminal), author, sourceUrl, sourceName, and coverImage. Dates are interpreted in UTC. Content is schema-validated during builds. Keep publication dates at or before release.
 
 To add series chapters use the same series name and unique sequential part numbers. The article layout creates the contents list and previous/next navigation.
 
