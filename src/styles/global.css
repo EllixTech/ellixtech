@@ -15,4 +15,16 @@
 .series-number,.series-promo .eyebrow{color:var(--powder-blue)}
 .button-light{background:var(--powder-blue)}
 .status-dot{background:var(--blue-ink);box-shadow:0 0 0 4px var(--blue-surface)}
+.card-art>img{display:block;width:100%;height:214px;object-fit:cover}
+.featured-art>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.article-cover{display:block;width:100%;height:auto;max-height:440px;object-fit:cover;border-radius:7px;margin-bottom:35px}
+.article-title>.article-source{font-size:12px;margin-top:14px}
+.article-source a{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.prose img{display:block;max-width:100%;height:auto;margin:24px auto}
+.prose figcaption{font-size:12px;color:var(--muted);text-align:center;margin-bottom:24px}
+.prose .codepen-embed{display:block;width:100%;height:450px;border:1px solid var(--line);border-radius:7px;margin-block:25px}
+.prose table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin-block:25px}
+.prose th,.prose td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.series-cover h2{overflow-wrap:anywhere}
+@media(max-width:760px){.card-art>img{height:230px}}
 
