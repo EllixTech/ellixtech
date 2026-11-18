@@ -31,4 +31,4 @@ No deployment is required for local review. When approved, commit and push to ma
 
 `public/CNAME` and Astro's site URL use ellixtech.com. Configure the domain in GitHub Pages settings, verify ownership, and point your DNS at GitHub Pages using GitHub's current documentation. Enable HTTPS after DNS validation. If the default branch differs from main, update the workflow trigger.
 
-The starter articles are editorial examples for reviewing layouts; review and replace them before publication. No newsletter service or analytics is connected. RSS works without a backend.
+No newsletter service or analytics is connected. RSS works without a backend.
